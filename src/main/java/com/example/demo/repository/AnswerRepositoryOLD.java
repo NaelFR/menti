@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class AnswerRepository extends CrudRepository {
+public class AnswerRepositoryOLD {
 
     private HashMap<Integer,String> dbLocal;
 
-    public AnswerRepository() {
+    public AnswerRepositoryOLD() {
         this.dbLocal = new HashMap<>();
 
         this.dbLocal.put(1, "Reponse 1");
