@@ -6,6 +6,7 @@ before_install:
 - mysql -e 'CREATE DATABASE menti;'
 notifications:
   slack:
-    on_success: always
     rooms:
       secure: "ZR+r3eADaxRXtAsgmz4PuZ3ruV7YdCgSE3RC7ZIiaQNmaPlHXySmTX2YgpHI/SNi8mnPCxakFvyxN5u/t4rv6r9ZG8Re6DDxsqZ4jttHb1bzxTowljaCYf9rEaZUfBq6fGJSzC/NbCtytHXFXArOzQael6g62FGm//eecuxIiWJVD+0vBtLAR9uxOJxKoyCNT5G0R0n/olbE5JChO5r4dgKiDwjt7cpzcjMOfU5fIigpxfqXc+eyq3RUozYD09rAHJ143pTTDhNh8nqmOPEr0/zzhSVuFsxiQGar9cHJKbKlOXkz1ICsHyYSCq6XSPPP5fYVXgPk6UHhFZFhCah+H24uIP6QJ07uKMdK0/2mtQHZQTmio836MI+weRYwyFpnvEZ8nqc+BWsGTrlXMi9NO5gyx330xyf/0vYftmjE/WFZXdrS0xP2+3ArdvegPh2qR0v/hdNugSqdXLOcxfAqa7U3fZEk/Abq6OYI7s1U5ii8xLHIm7+oFbjIBJ/oD71td3P9ldfl2EntfbBWOTKWOg5Qpuv6BhNQgutDHfgkZlGjllVwIWCaGHBws8iPCvOndfJhaXGAG+JztY5EjeZAs26rzS/6GOY6pTNniLTlCX3EaB/PXEHraIqhkz33dX9d4+eVwtqGXhh3t2tecjgfTJleX7LAhO9OJUHzpXtGV/8="
+    on_success: always
+    on_failure: always
