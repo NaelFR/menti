@@ -1,7 +1,8 @@
 package com.example.demo.resource;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+import com.example.demo.entity.Answer;
 import com.example.demo.service.AnswerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +16,13 @@ public class AnswerResource {
         this.answerService = answerService;
     }
 
-    @RequestMapping("/answers")
-    public List<String> getAll() {
+    @GetMapping("/answers")
+    public List<Answer> getAll() {
         return answerService.getAll();
     }
 
-    @RequestMapping(value = "/answers", method = RequestMethod.POST)
-    public void create(@RequestBody String answer) {
+    @PostMapping("/answers")
+    public void create(@RequestBody Answer answer) {
         answerService.create(answer);
     }
 }

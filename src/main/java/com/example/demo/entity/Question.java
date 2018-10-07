@@ -2,16 +2,16 @@ package com.example.demo.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@Table(name = "answers")
-public class Answer implements Serializable {
-
+@Table(name = "questions")
+public class Question implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "value") private String value;
+
+    @Column(name = "value")
+    private String value;
 
     public Long getId() {
         return id;

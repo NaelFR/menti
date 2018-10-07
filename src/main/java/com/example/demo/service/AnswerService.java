@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Answer;
 import com.example.demo.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,11 @@ public class AnswerService {
         this.answerRepository = answerRepository;
     }
 
-    public List<String> getAll() {
-        return this.answerRepository.getAll();
+    public List<Answer> getAll() {
+        return this.answerRepository.findAll();
     }
 
-    public void create( String answer ) {
-        this.answerRepository.create(answer);
+    public void create( Answer answer ) {
+        this.answerRepository.save(answer);
     }
 }
