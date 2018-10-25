@@ -6,22 +6,22 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
-@Table(name = "answers")
-public class Answer implements Serializable {
-
+public class UserAnswer implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "value") private String value;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "question_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Question question;
+
+    @OneToMany
+    @JoinColumn(name = "answer_id", nullable = false)
+    @JsonIgnore
+    private Answer answer;
 
     public Long getId() {
         return id;
@@ -31,19 +31,19 @@ public class Answer implements Serializable {
         this.id = id;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     public Question getQuestion() {
         return question;
     }
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 }

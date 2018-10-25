@@ -5,6 +5,7 @@ import com.example.demo.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -13,6 +14,10 @@ public class QuestionService {
 
     public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
+    }
+
+    public Optional<Question> findOne(Long questionId) {
+        return this.questionRepository.findById(questionId);
     }
 
     public List<Question> getAll() {
