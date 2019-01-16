@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Answer;
+import com.example.demo.entity.ChosenAnswer;
 import com.example.demo.repository.AnswerRepository;
+import com.example.demo.repository.ChosenAnswerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +14,12 @@ public class AnswerService {
 
     private AnswerRepository answerRepository;
     private QuestionService questionService;
+    private ChosenAnswerRepository chosenAnswerRepository;
 
-    public AnswerService(AnswerRepository answerRepository, QuestionService questionService) {
+    public AnswerService(AnswerRepository answerRepository, QuestionService questionService, ChosenAnswerRepository chosenAnswerRepository) {
         this.answerRepository = answerRepository;
         this.questionService = questionService;
+        this.chosenAnswerRepository = chosenAnswerRepository;
     }
 
     public List<Answer> getAll() {
@@ -33,8 +37,23 @@ public class AnswerService {
                     return this.answerRepository.save(answer);
                 });
     }
-
     public Optional<Answer> getById(Long answerId) {
         return this.answerRepository.findById(answerId);
+    }
+
+    public void choseAnAnswer(Long questionId, Long answerId) {
+        ChosenAnswer newChosenAnswer = new ChosenAnswer();
+        this.questionService.findOne(questionId)
+                .map(question -> this.getById(answerId)
+                        .map(answer -> {
+                            newChosenAnswer.setAnswer(answer);
+                            newChosenAnswer.setQuestion(question);
+
+                             return this.chosenAnswerRepository.save(newChosenAnswer);
+                        }));
+    }
+
+    public List<ChosenAnswer> getAllChosenAnswerByQuestionId(Long questionId) {
+        return this.chosenAnswerRepository.findAllByQuestionId(questionId);
     }
 }
